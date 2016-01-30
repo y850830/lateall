@@ -3,7 +3,7 @@
 namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
-
+use \App\Post;
 use App\Http\Requests;
 use App\Http\Controllers\Controller;
 
@@ -16,7 +16,7 @@ class PostController extends Controller
      */
     public function index()
     {
-        $posts = \App\Post::all();
+        $posts = Post::all();
         $data =[
             'posts'=>$posts
         ];
@@ -42,7 +42,8 @@ class PostController extends Controller
      */
     public function store(Request $request)
     {
-        //
+        Post::create($request->except('_token'));
+        return 'posts.store';
     }
 
     /**
@@ -54,7 +55,7 @@ class PostController extends Controller
     public function show($id)
     {
 
-        $post = \App\Post::find($id);
+        $post = Post::find($id);
         $data = compact('post');
 
         return view('posts.show', $data);
@@ -68,7 +69,7 @@ class PostController extends Controller
      */
     public function edit($id)
     {
-        $post = \App\Post::find($id);
+        $post = Post::find($id);
         $data = compact('post');
 
         return  view('posts.edit', $data);
@@ -83,7 +84,9 @@ class PostController extends Controller
      */
     public function update(Request $request, $id)
     {
-        //
+        $post = Post::find($id);
+        $post->update($request->except('_token'));
+        return 'posts.update: '.$id;
     }
 
     /**
@@ -98,14 +101,14 @@ class PostController extends Controller
     }
 
     public function hot() {
-        $posts = \App\Post::where('page_view','>',100)->oderBy('update_at','DESC')->get();
+        $posts = Post::where('page_view','>',100)->oderBy('update_at','DESC')->get();
         $data = compact('posts');
         return view('posts.index',$data);
     }
 
     public function random() {
 
-        $post = \App\Post::all()->random();
+        $post = Post::all()->random();
         $data = compact('post');
 
         return view('posts.show', $data);
