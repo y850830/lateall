@@ -27,27 +27,15 @@ Route::get('about', ['as' => 'about.index', 'uses'=>'AboutController@index']);
 
 Route::get('posts', ['as' => 'posts.index', 'uses'=>'PostController@index']);
 
-Route::get('posts/create', ['as' => 'posts.create', function() {
-    return view('posts.create');
-}]);
+Route::get('posts/create', ['as' => 'posts.create', 'uses'=>'PostController@create']);
 
 Route::post('posts', ['as' => 'posts.store', function() {
     return 'posts.store';
 }]);
 
-Route::get('posts/{id}', ['as' => 'posts.show', function($id) {
+Route::get('posts/{id}', ['as' => 'posts.show', 'uses'=>'PostController@show']);
 
-    $data = compact('id');
-
-    return view('posts.show', $data);
-}]);
-
-Route::get('posts/{id}/edit', ['as' => 'posts.edit', function($id) {
-
-    $data = compact('id');
-
-    return  view('posts.edit', $data);
-}]);
+Route::get('posts/{id}/edit', ['as' => 'posts.edit', 'uses'=>'PostController@edit']);
 
 Route::patch('posts/{id}', ['as' => 'posts.update', function($id) {
     return 'posts.update: '.$id;

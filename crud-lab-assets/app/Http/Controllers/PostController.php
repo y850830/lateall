@@ -31,7 +31,7 @@ class PostController extends Controller
      */
     public function create()
     {
-        //
+            return view('posts.create');
     }
 
     /**
@@ -53,7 +53,11 @@ class PostController extends Controller
      */
     public function show($id)
     {
-        //
+
+        $post = \App\Post::find($id);
+        $data = compact('post');
+
+        return view('posts.show', $data);
     }
 
     /**
@@ -64,7 +68,10 @@ class PostController extends Controller
      */
     public function edit($id)
     {
-        //
+        $post = \App\Post::find($id);
+        $data = compact('post');
+
+        return  view('posts.edit', $data);
     }
 
     /**
