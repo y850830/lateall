@@ -16,7 +16,7 @@ class PostController extends Controller
      */
     public function index()
     {
-        $posts = Post::all();
+        $posts = Post::orderBy('created_at','DESC')->paginate(5);
         $data =[
             'posts'=>$posts
         ];
@@ -102,7 +102,7 @@ class PostController extends Controller
     }
 
     public function hot() {
-        $posts = Post::where('page_view','>',100)->oderBy('update_at','DESC')->get();
+        $posts = Post::where('page_view','>',100)->orderBy('updated_at','DESC');
         $data = compact('posts');
         return view('posts.index',$data);
     }

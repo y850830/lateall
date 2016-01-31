@@ -38,13 +38,14 @@
                         {{$post->sub_title}}
                     </h3>
                 </a>
-                <p class="post-meta">由 <a href="#">Start Bootstrap</a> 發表於 September 24, 2014</p>
+                <p class="post-meta">由 <a href="#">Start Bootstrap</a> 發表於 {{$post->created_at->totimeString()}}</p>
             </div>
             <hr>
             @endforeach
             
             <!-- Pager -->
             <nav class="text-center">
+            {!! $posts->render() !!}
                 <ul class="pagination">
                     <li>
                         <a href="#" aria-label="Previous">
