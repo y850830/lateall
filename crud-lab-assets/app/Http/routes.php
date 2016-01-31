@@ -37,13 +37,9 @@ Route::get('posts/{id}/edit', ['as' => 'posts.edit', 'uses'=>'PostController@edi
 
 Route::patch('posts/{id}', ['as' => 'posts.update', 'uses'=>'PostController@update']);
 
-Route::delete('posts/{id}', ['as' => 'posts.destroy', function($id) {
-    return 'posts.destroy: '.$id;
-}]);
+Route::delete('posts/{id}', ['as' => 'posts.destroy', 'uses'=>'PostController@destroy']);
 
-Route::post('posts/{id}/comment', ['as' => 'posts.comment', function($id) {
-    return 'posts.comment: '.$id;
-}]);
+Route::post('posts/{id}/comment', ['as' => 'posts.comment', 'uses'=>'PostController@comment']);
 
 Route::get('hot', ['as' => 'posts.hot', 'uses'=>'PostController@hot']);
 

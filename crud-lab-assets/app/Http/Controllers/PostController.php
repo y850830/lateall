@@ -97,7 +97,8 @@ class PostController extends Controller
      */
     public function destroy($id)
     {
-        //
+        Post::destroy($id);
+        return 'posts.destroy: '.$id;
     }
 
     public function hot() {
@@ -113,4 +114,9 @@ class PostController extends Controller
 
         return view('posts.show', $data);
     }
+
+    public function comment($id) {
+
+        return 'posts.comment: '.$id;
+    }   
 }
