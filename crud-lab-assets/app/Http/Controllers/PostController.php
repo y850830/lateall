@@ -59,6 +59,11 @@ class PostController extends Controller
         $post = Post::find($id);
         $data = compact('post');
 
+        if(is_null($post))
+        {
+            return redirect()->route('posts.index')->with('message','Not Find!!!!');
+        }
+
         return view('posts.show', $data);
     }
 
