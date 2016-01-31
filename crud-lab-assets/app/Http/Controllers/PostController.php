@@ -5,6 +5,7 @@ namespace App\Http\Controllers;
 use Illuminate\Http\Request;
 use \App\Post;
 use App\Http\Requests;
+use App\Http\Requests\PostRequest;
 use App\Http\Controllers\Controller;
 
 class PostController extends Controller
@@ -40,7 +41,7 @@ class PostController extends Controller
      * @param  \Illuminate\Http\Request  $request
      * @return \Illuminate\Http\Response
      */
-    public function store(Request $request)
+    public function store(PostRequest $request)
     {
         $post=Post::create($request->except('_token'));
         return redirect()->route('posts.show',$post->id);
@@ -82,7 +83,7 @@ class PostController extends Controller
      * @param  int  $id
      * @return \Illuminate\Http\Response
      */
-    public function update(Request $request, $id)
+    public function update(PostRequest $request, $id)
     {
         $post = Post::find($id);
         $post->update($request->except('_token'));

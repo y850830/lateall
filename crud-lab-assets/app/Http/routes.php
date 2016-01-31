@@ -21,29 +21,7 @@ Route::pattern('id', '[0-9]+');
 |
 */
 
-Route::get('/', ['as' => 'home.index', 'uses'=>'HomeController@index']);
 
-Route::get('about', ['as' => 'about.index', 'uses'=>'AboutController@index']);
-
-Route::get('posts', ['as' => 'posts.index', 'uses'=>'PostController@index']);
-
-Route::get('posts/create', ['as' => 'posts.create', 'uses'=>'PostController@create']);
-
-Route::post('posts', ['as' => 'posts.store','uses'=>'PostController@store' ]);
-
-Route::get('posts/{id}', ['as' => 'posts.show', 'uses'=>'PostController@show']);
-
-Route::get('posts/{id}/edit', ['as' => 'posts.edit', 'uses'=>'PostController@edit']);
-
-Route::patch('posts/{id}', ['as' => 'posts.update', 'uses'=>'PostController@update']);
-
-Route::delete('posts/{id}', ['as' => 'posts.destroy', 'uses'=>'PostController@destroy']);
-
-Route::post('posts/{id}/comment', ['as' => 'posts.comment', 'uses'=>'PostController@comment']);
-
-Route::get('hot', ['as' => 'posts.hot', 'uses'=>'PostController@hot']);
-
-Route::get('random', ['as' => 'posts.random', 'uses'=>'PostController@random']);
 
 /*
 |--------------------------------------------------------------------------
@@ -57,5 +35,29 @@ Route::get('random', ['as' => 'posts.random', 'uses'=>'PostController@random']);
 */
 
 Route::group(['middleware' => ['web']], function () {
-    //
+
+	Route::get('/', ['as' => 'home.index', 'uses'=>'HomeController@index']);
+
+	Route::get('about', ['as' => 'about.index', 'uses'=>'AboutController@index']);
+
+	Route::get('posts', ['as' => 'posts.index', 'uses'=>'PostController@index']);
+
+	Route::get('posts/create', ['as' => 'posts.create', 'uses'=>'PostController@create']);
+
+	Route::post('posts', ['as' => 'posts.store','uses'=>'PostController@store' ]);
+
+	Route::get('posts/{id}', ['as' => 'posts.show', 'uses'=>'PostController@show']);
+
+	Route::get('posts/{id}/edit', ['as' => 'posts.edit', 'uses'=>'PostController@edit']);
+
+	Route::patch('posts/{id}', ['as' => 'posts.update', 'uses'=>'PostController@update']);
+
+	Route::delete('posts/{id}', ['as' => 'posts.destroy', 'uses'=>'PostController@destroy']);
+
+	Route::post('posts/{id}/comment', ['as' => 'posts.comment', 'uses'=>'PostController@comment']);
+
+	Route::get('hot', ['as' => 'posts.hot', 'uses'=>'PostController@hot']);
+
+	Route::get('random', ['as' => 'posts.random', 'uses'=>'PostController@random']);
+
 });
